@@ -24,10 +24,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div class="container" >
 		<div class="box">
+		<?php 
+				echo $this->session->flashdata("success");
+				echo $this->session->flashdata("error");?>
 			<a style="float:right" href=" <?php echo base_url('admin/home/logout') ?>">Logout</a>
-			<?php  echo $admin_fullname;?> <!--- admin username on the session page -->
+			<center><?php  echo $admin_fullname;?></center> <!--- admin username on the session page -->
 		</div>
-		<a href=" <?php echo base_url('admin/home/addemployee') ?> "><button type="button" class="btn btn-primary btn-lg">Add User</button></a>
+		<a href=" <?php echo base_url('admin/home/addemployee') ?>"><button type="button" class="btn btn-primary btn-lg">Add User</button></a>
 
 		<div class="table-responsive">
 			<table class="table">
@@ -35,8 +38,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<tr>
 						<th>Sr. No.</th>
 						<th>username</th>
-						<th>password</th>
-						<th>email</th>
+<!-- 						<th>password</th>
+ -->						<th>email</th>
 						<th>full name</th>
 						<th>role</th>
 						<th>Action</th>
@@ -51,11 +54,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<tr>
 						<td><?php echo ++$count; ?></td>
 						<td><?php echo $row->username;?></td>
-						<td><?php echo $row->password;?></td>
+						<!-- <td><?php echo $row->password;?></td> -->
 						<td><?php echo $row->email;?></td>
 						<td><?php echo $row->fullname;?></td>
 						<td><?php echo $row->role;?></td>
-						<td><button class= "glyphicon glyphicon-edit"><button style="color:red;margin:1px;" class= "glyphicon glyphicon-remove"></td>
+						<td><a href="<?php echo base_url('admin/home/editData?id='.$row->id);?>"><button class= "glyphicon glyphicon-edit"></button></a>
+						<a href="<?php echo base_url('admin/home/deleteData?id='.$row->id); ?>"><button style="color:red;margin:1px;" class= "glyphicon glyphicon-remove"></button></a></td>
 					</tr>
 					  <?php }  
         			  ?>  

@@ -76,7 +76,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body>
 
-	<?php echo validation_errors(); ?>
+	
 	<div id="container">
 		<div >
 			<center>
@@ -86,6 +86,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<input type="password" placeholder="Password" name="password" ><br>
 					<center><input type="submit" value="login"></center>
 				</form>
+				<?php echo validation_errors(); ?>
 				<?php 
 				if($this->session->flashdata("error"))
 				echo $this->session->flashdata("error") ?>

@@ -6,7 +6,7 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		if($this->session->userdata('username')){
-			$this->dasboardData();
+			$this->adminDashboardData();
 		}
 		else{
 		$this->load->view('admin/login');
@@ -28,8 +28,8 @@ class Home extends CI_Controller {
 		}
 		else
 		{
-			$this->load->model('user');
-			$access=$this->user->login();
+			$this->load->model('user_model');
+			$access=$this->user_model->login();
 			if($access){
 				$session_data= array(
 					'username'=>$access->username,
@@ -38,7 +38,7 @@ class Home extends CI_Controller {
 					'email'=>$access->email
 					);
 				$this->session->set_userdata($session_data);
-				$this->dasboardData();
+				$this->adminDashboardData();
 			}
 			else{
 				$this->session->set_flashdata('error','Wrong username and password');
@@ -69,36 +69,57 @@ class Home extends CI_Controller {
 			$this->load->view('admin/form');
 		}
 		public function add(){		
+		/*	$this->validation();
+
+			if ($this->form_validation->run() == FALSE)
+			{
+				$this->load->view('admin/form');
+			}*/
+			/*else
+			{
+				*/ 
+				$this->load->model('user_model');
+				$insertt=$this->user_model->add();
+
+				if ($insertt)
+					$this->session->set_flashdata('success','data inserted');
+				else
+					
+				$this->session->set_flashdata('error','insertion failed');
+				$this->adminDashboardData();
+			
+	}
+
+
+	public function adminDashboardData(){
+		$this->load->model('user_model');
+		$data['users']=$this->user_model->readUser();
+				$data['admin_fullname'] = $this->session->userdata('fullname');
+				$this->load->view('admin/adminDashboard',$data);
+	}
+
+	public function editData()
+	{
+		
+		$this->load->model('user_model');
+		$id=$this->input->get('id');
+		$data['result']=$this->user_model->edit($id);
+		//echo "<pre>";print_r($data['result']);die;
+		$this->load->view('admin/editform',$data);
+	}
+	public function validation(){
 			$this->form_validation->set_rules('password', 'Password', 'required');
 			$this->form_validation->set_rules('username', 'Username', 'required');
 			$this->form_validation->set_rules('fullname', 'Fullname', 'required');
 			$this->form_validation->set_rules('role', 'Role', 'required');
 			$this->form_validation->set_rules('email', 'Email', 'required');
-			if ($this->form_validation->run() == FALSE)
-			{
-				$this->load->view('admin/form');
-			}
-			else
-			{
-				$this->load->model('user');
-				$this->user->add();
-				$this->dasboardData();
-				
-
-			}
 	}
-
-
-	public function dasboardData(){
-		$this->load->model('user');
-		$data['users']=$this->user->readUser();
-				$data['admin_fullname'] = $this->session->userdata('fullname');
-
-				// redirect('admin/home','$data');
-				
-				$this->load->view('admin/adminDashboard',$data);
-
+	
+	public function deleteData(){
+		$this->load->model('user_model');
+		$id=$this->input->get('id');
+		$this->user_model->delete($id);
+		$this->adminDashboardData();
 	}
-		
 
 }

@@ -3,9 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> 
 	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
+	<title>User Login</title>
 
 	<style type="text/css">
 
@@ -77,12 +78,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div id="container">
 	<div >
-		<form action="<?php echo base_url('/admin'); ?>" method="post">
+		<center>
+		<form action="<?php echo base_url('employee/home/employeeLogin'); ?>" method="post">
 			<center><h1>User Login</h1>
 			<input type="text" placeholder="Email" name="username"><br>
 			<input type="password" placeholder="Password" name="password"><br>
 			<input type="submit" value="login" name="submit"></center>
 		</form>
+		<span class="alert-danger"><?php echo validation_errors(); ?></span>
+	</center>
 	</div>
 	
 		

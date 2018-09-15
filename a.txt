@@ -1,0 +1,33 @@
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   application/controllers/admin/Home.php
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   application/config/config.php
+	modified:   application/controllers/admin/Login.php
+	deleted:    application/controllers/employee/Employee.php
+	deleted:    application/models/User.php
+	modified:   application/views/admin/adminDashboard.php
+	modified:   application/views/admin/form.php
+	modified:   application/views/admin/login.php
+	modified:   application/views/employee/login.php
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	.htaccess
+	a.txt
+	application/controllers/employee/Home.php
+	application/models/Employee_model.php
+	application/models/User_model.php
+	application/views/admin/editform.php
+	application/views/employee/employeeDashboard.php
+	application/views/employee/leaveForm.php
+
